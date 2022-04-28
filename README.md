@@ -1,3 +1,3 @@
-# LX
+# Abstract Cloud
 
-LX is an interactive browser-based runtime for luke scipts.
+Your cloud platform, built with abstract code.
