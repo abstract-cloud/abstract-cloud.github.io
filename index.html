@@ -56,7 +56,13 @@
 
         <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
 
-          
+             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>SHELL</b></div>
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=null;setContent('')">New shell</div>
+                </div>
+
+            <br>
+
             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>ACTIONS</b></div>
                 <div class="leto-block" v-for="file in pfiles">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
@@ -70,22 +76,6 @@
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
                 </div>
                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
-
-            <span>
-                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>OBJECTS</b></div>
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setAndRun('get Templates')">Templates</div>
-                </div>
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setAndRun('get Objects')">Objects</div>
-                </div>
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setAndRun('get Users')">Users</div>
-                </div>
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setAndRun('get EventLogs')">Logs</div>
-                </div>
-            </span>
 
         </div>
 
