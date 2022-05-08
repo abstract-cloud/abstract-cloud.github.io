@@ -102,7 +102,7 @@ var app = new Vue({
                 if(data){
                     self.authenticated = true;
                 } else alert("Login error")
-            })
+            }, true)
         },
         loadPFiles: function(){
             var self = this;

@@ -19,6 +19,11 @@ html {
   display: none;
 }
 
+.top_bar{
+    //background: #111111;
+    color:#EEEEEE;
+}
+
 .offcanvas {
     margin-left: 300px !important;
 }

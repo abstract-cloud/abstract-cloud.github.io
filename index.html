@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Abstract Cloud</title>
+    <title>SPOO Abstract Cloud</title>
     <script type="text/javascript" src="puzzle-local.js"></script>
     <!-- Stylesheets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,13 +27,13 @@
 </head>
 
 <body>
-    <div id="app" class="leto-frame leto-group">
-        
-        <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
+    <div id="app">
+      <div class="leto-width-full leto-p top_bar leto-group leto-vertical-center">
+            SPOO | 
 
-            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>APP</b></div>
+            <!--div class="leto-inline-block leto-text-xs leto-text-white leto-m-none"><b>APP:</b></div-->
 
-            <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
+            <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
 
             
             <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL&nbsp; <span class="fa fa-caret-down"></span> </div>
@@ -41,16 +41,22 @@
             <br>
 
             <span v-show="currentApp == '__select'">
-                <div class="leto-block">
+                <div class="leto-inline-block">
                     <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL</div>
                 </div>
-                <div class="leto-block" v-for="app in applications">
+                <div class="leto-inline-block" v-for="app in applications">
                     <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
                 </div>
             </span>
 
-            <br>
+        </div>
+        
+    <div id="app" class="leto-frame leto-group">
 
+
+        <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
+
+          
             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>ACTIONS</b></div>
                 <div class="leto-block" v-for="file in pfiles">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
@@ -88,7 +94,7 @@
             
             <div id="editor" class="leto-mt-sm"></div>
 
-            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="setContent('')"> <span class="fa fa-eraser"></span></div>
+            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="saveFile()"> <span class="fa fa-save"></span></div>
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
 
@@ -98,18 +104,21 @@
         </div>
 
     
-        <div class="leto-width-four-fifths leto-p-sm" v-if="!authenticated">
-            LOGIN
-            <br>
-            <input type="text" class="leto-input-sm" v-model="loginData.workspace" placeholder="workspace">
-            <br>
-            <input type="text" class="leto-input-sm" v-model="loginData.username" placeholder="username">
-            <br>
-            <input type="password" class="leto-input-sm" v-model="loginData.password" placeholder="*******">
-            <br>
-            <div class="leto-button-xs" v-on:click="login()">Login</div>
+        <div class="leto-width-full leto-horizontal-center leto-vertcal-center leto-group leto-p-sm" v-if="!authenticated">
+            
+            <div>
+                <span class="leto-text-xl leto-text-white leto-m">LOGIN</span>
+                <br>
+                <input type="text" class="leto-input-sm" v-model="loginData.workspace" placeholder="workspace">
+                <br>
+                <input type="text" class="leto-input-sm" v-model="loginData.username" placeholder="username">
+                <br>
+                <input type="password" class="leto-input-sm" v-model="loginData.password" placeholder="*******">
+                <br>
+                <div class="leto-button-xs leto-text-white leto-border-white" v-on:click="login()">Login</div>
+            </div>
         </div>
-
+    </div>
     </div>
     <script src="ace-builds-1.1.4/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -127,7 +136,7 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    document.title = getParameterByName('name') || 'Abstract Cloud'
+    //document.title = getParameterByName('name') || 'Abstract Cloud'
 
     puzzle.parse(window.puzzle_script)
     </script>
