@@ -32,7 +32,7 @@
             Abstract Cloud | 
 
             <!--div class="leto-inline-block leto-text-xs leto-text-white leto-m-none"><b>APP:</b></div-->
-
+        <span v-show="authenticated">
             <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
 
             
@@ -49,9 +49,11 @@
                 </div>
             </span>
 
+        </span><span v-if="!authenticated" >&nbsp; LOGIN</span>
+
         </div>
         
-    <div id="app" class="leto-frame leto-group">
+    <div class="leto-frame leto-group">
 
 
         <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
@@ -63,15 +65,7 @@
 
             <br>
 
-            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>ACTIONS</b></div>
-                <div class="leto-block" v-for="file in pfiles">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
-                </div>
-                <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
-
-                <br><br>
-
-                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>VISUALS</b></div>
+            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Files</b></div>
                 <div class="leto-block" v-for="file in pfiles">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
                 </div>
