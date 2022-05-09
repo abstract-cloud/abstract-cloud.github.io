@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Abstract Cloud</title>
+    <script type="text/javascript" src="../puzzle-local.js"></script>
+    <!-- Stylesheets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="http://puzzlelang.org/puzzle-invert.png">
+    <!-- Android  -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- iOS -->
+    <meta name="apple-mobile-web-app-title" content="Puzzle Shell">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../leto-min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/@isomorphic-git/lightning-fs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spooclient@0.0.14/dist/entry.bundle.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="web"></div>
+        <pre class="" id="output">{{output}}</pre>
+         <div class="leto-width-full leto-horizontal-center leto-vertcal-center leto-group leto-p-sm" v-if="!authenticated">
+            <div>
+                <span class="leto-text-xl leto-text-white leto-m">LOGIN</span>
+                <br>
+                <input type="text" class="leto-input-sm" v-model="loginData.workspace" placeholder="workspace">
+                <br>
+                <input type="text" class="leto-input-sm" v-model="loginData.username" placeholder="username">
+                <br>
+                <input type="password" class="leto-input-sm" v-model="loginData.password" placeholder="*******">
+                <br>
+                <div class="leto-button-xs leto-text-white leto-border-white" v-on:click="login()">Login</div>
+            </div>
+        </div>
+    </div>
+    <script src="ace-builds-1.1.4/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../index.js"></script>
+    <script>
+    puzzle.parse(window.puzzle_script)
+    </script>
+</body>
+
+</html>

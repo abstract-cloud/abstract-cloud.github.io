@@ -18,18 +18,13 @@
     <link rel="stylesheet" type="text/css" href="leto-min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/@isomorphic-git/lightning-fs"></script>
-    <script type="module">
-         fs = new LightningFS('fs');
-    import http from 'https://unpkg.com/isomorphic-git@beta/http/web/index.js';
-    window.http = http;
-    </script>
-    <script src="spooclient.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spooclient@0.0.14/dist/entry.bundle.js"></script>
 </head>
 
 <body>
     <div id="app">
       <div class="leto-width-full leto-p top_bar leto-group leto-vertical-center">
-            Abstract Cloud | 
+            Abstract Cloud Beta | 
 
             <!--div class="leto-inline-block leto-text-xs leto-text-white leto-m-none"><b>APP:</b></div-->
         <span v-show="authenticated">
@@ -65,9 +60,9 @@
 
             <br>
 
-            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Files</b></div>
+            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b></div>
                 <div class="leto-block" v-for="file in pfiles">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.properties.content.value)">{{file.name}}</div>
+                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)">{{file.name}}</div>
                 </div>
                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
 
@@ -84,7 +79,7 @@
 
             <br>
 
-            <pre class="" id="output">out</pre>
+            <pre class="" id="output">{{output}}</pre>
         </div>
 
     
