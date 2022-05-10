@@ -70,12 +70,16 @@
 
         <div class="leto-width-four-fifths leto-p-sm" v-show="authenticated">
 
-            
             <div id="editor" class="leto-mt-sm"></div>
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="saveFile()"> <span class="fa fa-save"></span></div>
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
+
+            <span v-show="currentFile._id">
+                 | 
+                <a target="_blank" class="leto-mh-sm leto-text-grey" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile._id">View</a>
+            </span>
 
             <br>
 

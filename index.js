@@ -166,7 +166,7 @@ var syntax = {
         }
       },
       workspace: {
-                    follow: ["{ws}"],
+                follow: ["{ws}"],
                     method: function(ctx, ws) {
                         syntax.spoo = new SpooClient(ws, {url: "https://spoo.rocks/api"})
                     }
@@ -227,7 +227,21 @@ var syntax = {
                         console.log(updateObj)
                         ctx.alterData = eval('(' + updateObj + ')');
                     }
-                }
+                },
+                "include-script": {
+                    follow: ["{file}"],
+                    method: function(ctx, file) {
+                        var file = window.puzzle.getRawStatement(file);
+                        spoo.io().scripts({name: file}).get((data, err) => {
+                            if(err || !data.length) return window.puzzle.error('Error including script');
+                            try {
+                                window.puzzle.parse(data[0].content.value);
+                            } catch(e) {
+                                window.puzzle.error('Error including script');
+                            }
+                        })
+                    }
+                },
     }
   }
 }
@@ -252,6 +266,9 @@ var app = new Vue({
         output: "",
     },
     methods: {
+        showIncludeAlert: function(id){
+            alert('include '+id)
+        },
         login: function() {
 
             var self = this;
@@ -408,7 +425,7 @@ var app = new Vue({
 
         // display output from puzzle script
         bus.$on('puzzle-response', function(c) {
-            self.output += '<br>' + c
+            self.output += c
         })
 
         // key handlers for save, run and add tab
