@@ -385,10 +385,11 @@ var app = new Vue({
 
                     if(decision && window.location.hash){
 
-                        var fileId = window.location.hash.substring(1);
+                        var fileName = window.location.hash.substring(1);
                         
-                        spoo.io().script(fileId).get((data, err) => {
-                            self.runCode(data.content.value)
+                        spoo.io().scripts({name: fileName}).get((data, err) => {
+                            if(err || !data.length) return self.output = 'Error: File not loaded.'
+                            else self.runCode(data[0].content.value)
                         })
 
                     }

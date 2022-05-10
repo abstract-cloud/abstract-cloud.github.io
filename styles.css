@@ -243,6 +243,10 @@ html {
     background: #202020; //#efefef;
 }
 
+#output {
+    color: #eeeeee;
+}
+
 .bottom-sheet {
     height: 30%;
     width: 100%;
