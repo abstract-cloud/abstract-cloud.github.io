@@ -62,7 +62,7 @@
 
             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b></div>
                 <div class="leto-block" v-for="file in pfiles">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)">{{file.name}}</div>
+                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)">{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
                 </div>
                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
 
@@ -76,9 +76,9 @@
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
 
-            <span v-show="currentFile._id">
+            <span v-show="currentFile != null">
                  | 
-                <a target="_blank" class="leto-mh-sm leto-text-grey" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile._id">View</a>
+                <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View URL<span class="leto-text-xs">&#8599;</span></a>
             </span>
 
             <br>

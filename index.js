@@ -288,6 +288,7 @@ var app = new Vue({
             })
         },
         addPFile: function(){
+            var self = this;
             var name = prompt('name', '');
             spoo.io().script({
                 type: "puzzle_file",
@@ -297,7 +298,18 @@ var app = new Vue({
                         value: "..."
                     }
                 
-            }).add()
+            }).add((data, err) => {
+                self.pfiles.push(data)
+            })
+        },
+        deletePFile: function(id){
+            var self = this;
+            if(!confirm('Really delete file?')) return;
+            spoo.io().script(id).delete((data, err) => {
+                self.pfiles.forEach((f,i) => {
+                    if(f._id == id) self.pfiles.splice(i,1);
+                })
+            })
         },
         setContent: function(content){
             this.content = content;
@@ -392,6 +404,8 @@ var app = new Vue({
                             else self.runCode(data[0].content.value)
                         })
 
+                    } else if(decision){
+                        self.loadPFiles()
                     }
                 })
             }
