@@ -282,6 +282,7 @@ var app = new Vue({
     },
     methods: {
         callAction: function(code){
+            if(!confirm('Call script on the cloud?')) return;
             var self = this;
             spoo.io().script({onCreate: {exec: {value: 'use puzzle;'+code}, destruct: {trigger: 'after', value: "obj.remove()"}}}).add((data, err) => {
 
