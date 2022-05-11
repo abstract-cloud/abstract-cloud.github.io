@@ -78,7 +78,8 @@
 
             <span v-show="currentFile != null">
                  | 
-                <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View URL<span class="leto-text-xs">&#8599;</span></a>
+                <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View<span class="leto-text-xs">&#8599;</span></a>
+                <span v-on:click="callAction(currentFile.content.value)" class="leto-mh-sm leto-text-darker-grey leto-text-sm">Call</span>
             </span>
 
             <br>

@@ -228,7 +228,7 @@ var syntax = {
                         ctx.alterData = eval('(' + updateObj + ')');
                     }
                 },
-                "include-script": {
+                include: {
                     follow: ["{file}"],
                     method: function(ctx, file) {
                         var file = window.puzzle.getRawStatement(file);
@@ -238,6 +238,21 @@ var syntax = {
                                 window.puzzle.parse(data[0].content.value);
                             } catch(e) {
                                 window.puzzle.error('Error including script');
+                            }
+                        })
+                    }
+                },
+                call: {
+                    follow: ["{file}"],
+                    method: function(ctx, file) {
+                       spoo.io().scripts({name: file}).get((data, err) => {
+                            if(err || !data.length) return window.puzzle.error('Error calling script');
+                            try {
+                                spoo.io().script({onCreate: {exec: {value: 'use puzzle;'+data[0].content.value}, destruct: {trigger: 'after', value: "obj.remove()"}}}).add((data, err) => {
+                                    window.puzzle.output('Called script')
+                                })
+                            } catch(e) {
+                                window.puzzle.error('Error calling script');
                             }
                         })
                     }
@@ -266,6 +281,12 @@ var app = new Vue({
         output: "",
     },
     methods: {
+        callAction: function(code){
+            var self = this;
+            spoo.io().script({onCreate: {exec: {value: 'use puzzle;'+code}, destruct: {trigger: 'after', value: "obj.remove()"}}}).add((data, err) => {
+
+            })
+        },
         showIncludeAlert: function(id){
             alert('include '+id)
         },
