@@ -35,23 +35,28 @@
 
             <br>
 
-            <span v-show="currentApp == '__select'">
-                <div class="leto-inline-block">
-                    <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL</div>
-                </div>
-                <div class="leto-inline-block" v-for="app in applications">
-                    <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
-                </div>
-            </span>
-
+            
         </span><span v-if="!authenticated" >&nbsp; LOGIN</span>
 
         </div>
+
+
         
     <div class="leto-frame leto-group">
 
+      
 
         <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
+
+              <div v-show="currentApp == '__select'">
+                <div class="leto-block">
+                    <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL</div>
+                </div>
+                <div class="leto-block" v-for="app in applications">
+                    <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
+                </div>
+            </div>
+
 
              <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>SHELL</b></div>
                 <div class="leto-block">
