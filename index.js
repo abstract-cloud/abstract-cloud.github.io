@@ -281,6 +281,14 @@ var app = new Vue({
         output: "",
     },
     methods: {
+        logout: function(){
+            var self = this;
+            spoo.io().logout()
+            delete localStorage['accessToken'];
+            delete sessionStorage['accessToken'];
+            delete localStorage['refreshToken'];
+            location.reload()
+        },
         callAction: function(code){
             if(!confirm('Call script on the cloud?')) return;
             var self = this;

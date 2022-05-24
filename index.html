@@ -35,16 +35,15 @@
 
             <br>
 
+            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-click" style="position: absolute; right:10px; top:10px" v-on:click="logout()">Logout</div>
             
         </span><span v-if="!authenticated" >&nbsp; LOGIN</span>
 
         </div>
 
-
         
-    <div class="leto-frame leto-group">
 
-      
+    <div class="leto-frame leto-group">
 
         <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
 
@@ -56,6 +55,8 @@
                     <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
                 </div>
             </div>
+
+
 
 
              <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>SHELL</b></div>
@@ -71,9 +72,39 @@
                 </div>
                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
 
+                <br><br>
+
+                <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>DATA</b></div>
+                    
+                <div class="leto-text-white leto-p-xs">
+                    <div class="leto-bubble-wrapper-xs leto-block">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs leto-block">Objects</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs leto-block">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Templates</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs leto-block">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Users</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs leto-block">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Logs</label>
+                    </div>
+               </div-->
+
+
         </div>
 
         <div class="leto-width-four-fifths leto-p-sm" v-show="authenticated">
+
+
 
             <div id="editor" class="leto-mt-sm"></div>
 
@@ -82,9 +113,11 @@
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
 
             <span v-show="currentFile != null">
-                 | 
-                <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View<span class="leto-text-xs">&#8599;</span></a>
-                <span v-on:click="callAction(currentFile.content.value)" class="leto-mh-sm leto-text-darker-grey leto-text-sm">Call</span>
+                
+                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="callAction(currentFile.content.value)"> <span class="fa fa-play"></span>&nbsp; Call</div>
+ | 
+                <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View UI<span class="leto-text-xs">&#8599;</span></a>
+                
             </span>
 
             <br>
