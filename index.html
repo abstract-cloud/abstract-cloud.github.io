@@ -26,38 +26,12 @@
       <div class="leto-width-full leto-p top_bar leto-group leto-vertical-center">
             Abstract Cloud Beta | 
 
-            <!--div class="leto-inline-block leto-text-xs leto-text-white leto-m-none"><b>APP:</b></div-->
+           
         <span v-show="authenticated">
             <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
 
             
-            <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL&nbsp; <span class="fa fa-caret-down"></span> </div>
-
-
-             <!--div class="leto-text-white leto-p-xs leto-inline-block">
-                    <div class="leto-bubble-wrapper-xs">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs leto-block">Objects</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Templates</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Users</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Logs</label>
-                    </div>
-               </div-->
-
-
+            <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL APPS&nbsp; <span class="fa fa-caret-down"></span> </div>
 
             <br>
 
@@ -73,23 +47,14 @@
 
               <div v-show="currentApp == '__select'">
                 <div class="leto-block">
-                    <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL</div>
+                    <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL APPS</div>
                 </div>
                 <div class="leto-block" v-for="app in applications">
                     <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
                 </div>
             </div>
 
-             <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>SHELL</b></div>
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')">New shell</div>
-                </div>
-
-                <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')">Objects</div>
-                </div>
-
-            <br-->
+            <div v-show="currentApp != '__select'">
 
             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div>
 
@@ -126,6 +91,8 @@
 
        
         </div>
+
+    </div>
 
         <div class="leto-width-four-fifths leto-p-sm" v-show="authenticated">
 
