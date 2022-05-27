@@ -91,22 +91,23 @@
 
             <br-->
 
-            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Shell</b> </div>
+            <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div>
 
                 <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
                 </div>
 
                 <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Data</div>
                 </div>
 
-                <br>
-                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div>
+                <!--br>
+                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div-->
 
                 <div class="leto-block" v-for="file in pfiles_scripts">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-code leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
+                    <div class="leto-button-xs leto-bg-light-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-code leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
                 </div>
+                
                 
                 <div class="leto-block" v-for="file in pfiles_visuals">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-eye leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
@@ -116,8 +117,8 @@
                  <div class="dropdown">
   <span><div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-xs">+</div></span>
   <div class="dropdown-content">
-  <p class="leto-click" v-on:click="addPFile('script')">Cloud script</p>
-  <p class="leto-click" v-on:click="addPFile('visual')">Visual</p>
+  <p class="leto-click" v-on:click="addPFile('script')"><span class="fa fa-code leto-text-xxs"></span>&nbsp;Cloud Script</p>
+  <p class="leto-click" v-on:click="addPFile('visual')"><span class="fa fa-eye leto-text-xxs"></span>&nbsp;Visual Script</p>
   </div>
 </div>
 

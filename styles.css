@@ -83,6 +83,10 @@ html {
     overflow: scroll;
 }
 
+.leto-bg-dark-black {
+    background: #1a1a1a;
+}
+
 .main-content-bottom {
     position: fixed;
     bottom: 20px;
