@@ -33,6 +33,32 @@
             
             <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL&nbsp; <span class="fa fa-caret-down"></span> </div>
 
+
+             <!--div class="leto-text-white leto-p-xs leto-inline-block">
+                    <div class="leto-bubble-wrapper-xs">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs leto-block">Objects</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Templates</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Users</label>
+                    </div>
+                    <div class="leto-bubble-wrapper-xs">
+                        <div class="leto-bubble">
+                        </div>
+                        <label class="leto-text-xs">Logs</label>
+                    </div>
+               </div-->
+
+
+
             <br>
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-click" style="position: absolute; right:10px; top:10px" v-on:click="logout()">Logout</div>
@@ -40,8 +66,6 @@
         </span><span v-if="!authenticated" >&nbsp; LOGIN</span>
 
         </div>
-
-        
 
     <div class="leto-frame leto-group">
 
@@ -56,66 +80,50 @@
                 </div>
             </div>
 
-
-
-
              <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>SHELL</b></div>
                 <div class="leto-block">
-                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=null;setContent('')">New shell</div>
+                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')">New shell</div>
                 </div>
 
             <br>
 
             <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b></div>
-                <div class="leto-block" v-for="file in pfiles">
+                <div class="leto-block" v-for="file in pfiles_scripts">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)">{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
                 </div>
-                <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile()">+</div>
+                <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile('script')">+</div>
 
-                <br><br>
+        <br>
 
-                <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>DATA</b></div>
-                    
-                <div class="leto-text-white leto-p-xs">
-                    <div class="leto-bubble-wrapper-xs leto-block">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs leto-block">Objects</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs leto-block">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Templates</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs leto-block">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Users</label>
-                    </div>
-                    <div class="leto-bubble-wrapper-xs leto-block">
-                        <div class="leto-bubble">
-                        </div>
-                        <label class="leto-text-xs">Logs</label>
-                    </div>
-               </div-->
+        <br>
 
+         <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Visuals</b></div>
+                <div class="leto-block" v-for="file in pfiles_visuals">
+                    <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)">{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
+                </div>
+                <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="addPFile('visual')">+</div>
 
         </div>
 
         <div class="leto-width-four-fifths leto-p-sm" v-show="authenticated">
 
-
-
+            <!--div style="height: 200px;">
+<textarea placeholder="Enter HTML Source Code" id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+<pre id="highlighting" aria-hidden="true">
+<code class="language-html" id="highlighting-content"></code>
+</pre>
+</div-->
+            
+          
             <div id="editor" class="leto-mt-sm"></div>
 
-            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="saveFile()"> <span class="fa fa-save"></span></div>
+            <div v-show="currentFile.name" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="saveFile()"> <span class="fa fa-save"></span></div>
 
-            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
+            <div v-show="currentFile.type == 'visual' || !currentFile.name" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="runCode(content)"> <span class="fa fa-play"></span></div>
 
-            <span v-show="currentFile != null">
-                
-                 <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="callAction(currentFile.content.value)"> <span class="fa fa-play"></span>&nbsp; Call</div>
- | 
+            <div v-show="currentFile.type == 'script'" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-mv" style="background: #111111" v-on:click="callAction(currentFile.content.value)"> <span class="fa fa-play"></span></div>
+
+            <span v-show="currentFile.type == 'visual'"> | 
                 <a target="_blank" class="leto-mh-sm leto-text-darker-grey leto-text-sm" v-bind:href="'https://abstract-cloud.github.io/view#'+currentFile.name">View UI<span class="leto-text-xs">&#8599;</span></a>
                 
             </span>
@@ -123,6 +131,16 @@
             <br>
 
             <pre class="" id="output">{{output}}</pre>
+
+            <br>
+
+              <div class="leto-group" v-show="!currentFile.name">
+                <div class="leto-bubble-wrapper-sm">
+                    <div class="leto-bubble"></div>
+                    <label>OBJECTS</label>
+                </div>
+            </div>
+
         </div>
 
     
@@ -161,6 +179,48 @@
     //document.title = getParameterByName('name') || 'Abstract Cloud'
 
     puzzle.parse(window.puzzle_script)
+
+
+
+    function update(text) {
+  let result_element = document.querySelector("#highlighting-content");
+  // Handle final newlines (see article)
+  if(text[text.length-1] == "\n") {
+    text += " ";
+  }
+  // Update code
+  result_element.innerHTML = text.replace(new RegExp("&", "g"), "&amp;").replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
+  // Syntax Highlight
+
+//  Prism.highlightElement(result_element);
+
+}
+
+function sync_scroll(element) {
+  /* Scroll result to scroll coords of event - sync with textarea */
+  let result_element = document.querySelector("#highlighting");
+  // Get and set x and y
+  result_element.scrollTop = element.scrollTop;
+  result_element.scrollLeft = element.scrollLeft;
+}
+
+function check_tab(element, event) {
+  let code = element.value;
+  if(event.key == "Tab") {
+    /* Tab key pressed */
+    event.preventDefault(); // stop normal
+    let before_tab = code.slice(0, element.selectionStart); // text before tab
+    let after_tab = code.slice(element.selectionEnd, element.value.length); // text after tab
+    let cursor_pos = element.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
+    element.value = before_tab + "\t" + after_tab; // add tab char
+    // move cursor
+    element.selectionStart = cursor_pos;
+    element.selectionEnd = cursor_pos;
+    update(element.value); // Update text to include indent
+  }
+}
+
+
     </script>
 </body>
 

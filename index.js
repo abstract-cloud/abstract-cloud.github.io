@@ -273,7 +273,8 @@ var app = new Vue({
         applications: [],
         currentApp: null,
         currentFile: {},
-        pfiles: [],
+        pfiles_scripts: [],
+        pfiles_visuals: [],
         loginData: {},
         authenticated: false,
         sideBarShown: true,
@@ -281,6 +282,9 @@ var app = new Vue({
         output: "",
     },
     methods: {
+        setFile: function(file){
+            Vue.set(this, 'currentFile', file)
+        },
         logout: function(){
             var self = this;
             spoo.io().logout()
@@ -313,15 +317,19 @@ var app = new Vue({
         },
         loadPFiles: function(){
             var self = this;
-            spoo.io().scripts({}).get((data, err) => {
-                self.pfiles = data;
+            spoo.io().scripts({type: 'script'}).get((data, err) => {
+                self.pfiles_scripts = data;
+            })
+
+            spoo.io().scripts({type: 'visual'}).get((data, err) => {
+                self.pfiles_visuals = data;
             })
         },
-        addPFile: function(){
+        addPFile: function(type){
             var self = this;
             var name = prompt('name', '');
             spoo.io().script({
-                type: "puzzle_file",
+                type: type || "puzzle_file",
                 name: name,
                     content: {
                         type: "action",
