@@ -33,6 +33,8 @@
             
             <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL APPS&nbsp; <span class="fa fa-caret-down"></span> </div>
 
+<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
+<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Data</div>
             <br>
 
             <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-click" style="position: absolute; right:10px; top:10px" v-on:click="logout()">Logout</div>
@@ -52,13 +54,14 @@
                 <div class="leto-block" v-for="app in applications">
                     <div v-on:click="currentApp = app" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">{{app.name}}</div>
                 </div>
+
             </div>
 
             <div v-show="currentApp != '__select'">
 
             <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div-->
 
-                <div class="leto-block">
+                <!--div class="leto-block">
                     <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
                 </div>
 
@@ -66,8 +69,8 @@
                     <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Data</div>
                 </div>
 
-                <!--br>
-                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div-->
+                <br-->
+                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div>
 
                 <div class="leto-block" v-for="file in pfiles_scripts">
                     <div class="leto-button-xs leto-bg-light-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-code leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
