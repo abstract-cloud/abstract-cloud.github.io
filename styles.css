@@ -71,15 +71,6 @@ html {
     background-color: #222222;
 }
 
-.dropdown {
-    display: inline-block;
-    background: #000000 !important;
-    color: white;
-    position: fixed !important;
-    z-index: 999999;
-    left: 0px;
-}
-
 .main-content {
     top: 0px;
     //height: 100%;
@@ -398,8 +389,25 @@ margin-left:0px;
 
 
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #111111;
+  color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 5px 2px;
+  z-index: 1;
+}
 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 
  /* Please see the article */
