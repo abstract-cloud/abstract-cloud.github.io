@@ -53,7 +53,7 @@ SpooClient.define({
     authable: true,
 });
 
-var spoo = new SpooClient(localStorage['clientId'], {url: "https://spoo.rocks/api"})
+var spoo = new SpooClient(localStorage['clientId'], {url: localStorage['url'] || "https://spoo.rocks/api"})
 
 var isObject = (a) => {
     return (!!a) && (a.constructor === Object);
@@ -168,13 +168,13 @@ var syntax = {
       workspace: {
                 follow: ["{ws}"],
                     method: function(ctx, ws) {
-                        syntax.spoo = new SpooClient(ws, {url: "https://spoo.rocks/api"})
+                        syntax.spoo = new SpooClient(ws, {url: localStorage['url'] || "https://spoo.rocks/api"})
                     }
                 },
                 app: {
                     follow: ["{app}"],
                     method: function(ctx, app) {
-                        syntax.spoo = new SpooClient(localStorage['clientId'], {url: "https://spoo.rocks/api"}).app(app);
+                        syntax.spoo = new SpooClient(localStorage['clientId'], {url: localStorage['url'] || "https://spoo.rocks/api"}).app(app);
                     }
                 },
                 auth: {
@@ -306,12 +306,13 @@ var app = new Vue({
         login: function() {
 
             var self = this;
-            spoo = new SpooClient(self.loginData.workspace, {url: "https://spoo.rocks/api"})
+            spoo = new SpooClient(self.loginData.workspace, {url: self.loginData.url || localStorage['url'] || "https://spoo.rocks/api"})
 
             spoo.io().auth(self.loginData.username, self.loginData.password, (data,err) => {
                 if(data){
                     self.authenticated = true;
                     localStorage['clientId'] = self.loginData.workspace;
+                    localStorage['url'] = self.loginData.url;
                 } else alert("Login error")
             }, true)
         },
@@ -411,7 +412,7 @@ var app = new Vue({
         },
         currentApp: function(app){
             var self = this;
-            spoo = new SpooClient(localStorage['clientId'], {url: "https://spoo.rocks/api"}).app(app.name)
+            spoo = new SpooClient(localStorage['clientId'], {url: localStorage['url'] || "https://spoo.rocks/api"}).app(app.name)
             self.loadPFiles(app)
         },
     },
@@ -429,7 +430,7 @@ var app = new Vue({
 
             if(localStorage['clientId'])
             {
-                spoo = new SpooClient(localStorage['clientId'], {url: "https://spoo.rocks/api"})
+                spoo = new SpooClient(localStorage['clientId'], {url: localStorage['url'] || "https://spoo.rocks/api"})
                 spoo.io().authenticated(decision => {
                     self.authenticated = decision;
 
@@ -447,6 +448,8 @@ var app = new Vue({
                     }
                 })
             }
+
+            self.loginData.url = localStorage['url']
 
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");

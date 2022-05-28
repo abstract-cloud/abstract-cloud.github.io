@@ -24,9 +24,8 @@
 <body>
     <div id="app">
       <div class="leto-width-full leto-p top_bar leto-group leto-vertical-center">
-            Abstract Cloud Beta | 
+            Abstract Cloud | 
 
-           
         <span v-show="authenticated">
             <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
 
@@ -34,10 +33,13 @@
             <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL APPS&nbsp; <span class="fa fa-caret-down"></span> </div>
 
 <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
-<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Data</div>
+
+<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
+
             <br>
 
-            <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-click" style="position: absolute; right:10px; top:10px" v-on:click="logout()">Logout</div>
+
+            <div style="position: absolute; right:10px; top:10px"><span class="leto-text-sm"> {{loginData.url}}  |</span><div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-click"  v-on:click="logout()">Logout</div></div>
             
         </span><span v-if="!authenticated" >&nbsp; LOGIN</span>
 
@@ -73,14 +75,13 @@
                 <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Scripts</b> </div>
 
                 <div class="leto-block" v-for="file in pfiles_scripts">
-                    <div class="leto-button-xs leto-bg-light-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-code leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
+                    <div class="leto-button-xs leto-bg-light-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-cloud leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
                 </div>
                 
                 
                 <div class="leto-block" v-for="file in pfiles_visuals">
                     <div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentFile=file;setContent(file.content.value)"><span class="fa fa-eye leto-text-xxs"></span>&nbsp;{{file.name}} <span class="leto-click leto-ml-sm" v-on:click="deletePFile(file._id)"><span class="fa fa-times"></span></span></div>
                 </div>
-                
 
                  <div class="dropdown">
   <span><div class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-xs">+</div></span>
@@ -90,9 +91,20 @@
   </div>
 </div>
 
-        <br>
+     <br>
+      <br>
 
-       
+                <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Data</b> </div-->
+            
+            <!--div class="leto-group">
+
+                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
+                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Templates</div>
+                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Users</div>
+                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Files</div>
+                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Logs</div>
+            </div-->
+
         </div>
 
     </div>
@@ -140,6 +152,8 @@
             
             <div>
                 <span class="leto-text-xl leto-text-white leto-m">LOGIN</span>
+                <br>
+                <input type="text" class="leto-input-sm" v-model="loginData.url" placeholder="url">
                 <br>
                 <input type="text" class="leto-input-sm" v-model="loginData.workspace" placeholder="workspace">
                 <br>
