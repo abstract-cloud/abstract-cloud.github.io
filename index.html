@@ -34,8 +34,6 @@
 
 <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
 
-<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
-
             <br>
 
 
@@ -94,16 +92,26 @@
      <br>
       <br>
 
-                <!--div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Data</b> </div-->
-            
-            <!--div class="leto-group">
+                <div class="leto-block leto-text-xs leto-text-white leto-m-xs"><b>Data</b> </div>
 
-                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
-                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Templates</div>
-                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Users</div>
-                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Files</div>
-                <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Logs</div>
-            </div-->
+            <div>
+
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get objects;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
+                </div>
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get templates;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Templates</div>
+                </div>
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get users;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Users</div>
+                </div>
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get files;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Files</div>
+                </div>
+                <div class="leto-block">
+                    <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('get objects;');runCode('get logs;')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Logs</div>
+                </div>
+            </div>
 
         </div>
 
