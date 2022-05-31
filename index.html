@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Abstract Code</title>
+    <title>Abstract Cloud</title>
     <script type="text/javascript" src="puzzle-local.js"></script>
     <!-- Stylesheets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,15 +24,17 @@
 <body>
     <div id="app">
       <div class="leto-width-full leto-p top_bar leto-group leto-vertical-center">
-            Abstract Code | 
+            Abstract Cloud | 
 
         <span v-show="authenticated">
-            <div v-if="currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
+            <div v-if="currentApp != '__select'" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm leto-border-none leto-inline-block" v-on:click="currentApp = '__select' ">{{currentApp.name}}&nbsp; <span class="fa fa-caret-down"></span> </div>
 
             
             <div v-if="!currentApp" class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm" v-on:click="currentApp = '__select' ">ALL APPS&nbsp; <span class="fa fa-caret-down"></span> </div>
 
 <div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile({});setContent('')"><span class="fa fa-terminal leto-text-xxs"></span>&nbsp;New shell</div>
+
+<div class="leto-button-xs leto-bg-dark-black leto-border-none leto-text-white leto-text-sm" v-on:click="setFile(null);setContent('get objects')"><span class="fa fa-circle leto-text-xxs"></span>&nbsp;Objects</div>
 
             <br>
 
@@ -48,6 +50,7 @@
         <div class="leto-width-fifth leto-p-sm" v-show="authenticated">
 
               <div v-show="currentApp == '__select'">
+                <div class="leto-text-white leto-m">SELECT APP:</div>
                 <div class="leto-block">
                     <div v-on:click="currentApp = null " class="leto-button-xs leto-bg-black leto-border-none leto-text-white leto-text-sm">ALL APPS</div>
                 </div>

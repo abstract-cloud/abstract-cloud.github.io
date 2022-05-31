@@ -271,7 +271,7 @@ var app = new Vue({
     el: '#app',
     data: {
         applications: [],
-        currentApp: null,
+        currentApp: '__select',
         currentFile: {},
         pfiles_scripts: [],
         pfiles_visuals: [],
