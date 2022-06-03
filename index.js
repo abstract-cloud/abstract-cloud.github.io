@@ -379,6 +379,7 @@ var app = new Vue({
         // run a puzzle script
         runCode: function(code) {
             this.output = '';
+            document.getElementById('ui').innerHTML='';
             console.log('running', code)
             puzzle.parse(code);
         },
